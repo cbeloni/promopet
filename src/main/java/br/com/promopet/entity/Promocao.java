@@ -27,6 +27,9 @@ public class Promocao {
 	private String descricao;
 	private BigDecimal valor;
 	private String desconto;
+	private String loja;
+	private String cupom;
+	private String imagem;
 	
 	@Column(name = "link", length=4000)
 	private String link;
