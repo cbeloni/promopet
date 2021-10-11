@@ -51,7 +51,7 @@ public class PromocaoController {
 		return new ResponseEntity<Promocao>(promocaoSalva, HttpStatus.OK);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Promocao> apagar(@PathVariable Long id){
 		Promocao promocao = promocaoService.listarPorId(id);
 		promocaoService.apagar(promocao); 

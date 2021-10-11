@@ -29,7 +29,7 @@
 		                    <td th:text="${promocao.descricao}"></td>
 		                    <td><a th:href="${promocao.link}">ir para Promoção</a></td>
 		                    
-		                    <td><a th:href="@{/delete/{id}(id=${promocao.id})}">Delete</a></td>
+		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}">Delete</a></td>
 		                </tr>
 		            </tbody>
 		        </table>

@@ -30,6 +30,8 @@ public class Promocao {
 	private String loja;
 	private String cupom;
 	private String imagem;
+	private Long positivo;
+	private Long negativo;
 	
 	@Column(name = "link", length=4000)
 	private String link;
