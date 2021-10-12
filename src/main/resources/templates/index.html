@@ -15,25 +15,31 @@
     	<h2>O melhor preço para os produtos do seu Pet</h2>
     	<hr>    	
     	<div>
-    	<form method="post" th:action="@{/salvar}" th:object="${promocao}" class="col card p-3 mb-5">
-		    <div class="form-group">
-		        <input id="firstName" placeholder="Descreva a promoção" required type="text" th:field="*{nome}"
-		               class="form-control"/>
+    	<form method="post" th:action="@{/salvar}" th:object="${promocao}" class="col card border-info p-3 mb-5">
+			<div class="form-group row">
+				<label for="link" class="col-md-2 col-form-label text-md-right text-sm-left">Link:</label>
+		        <input id="link" placeholder="http://lojasuperbarata.com.br/produto" required type="text" th:field="*{link}"
+		               class="form-control col-sm-9"/>
 		    </div>
-		    <div class="form-group">
-		        <input id="lastName" placeholder="link da promoção" required type="text" th:field="*{link}"
-		               class="form-control"/>
+		    <div class="form-group row">
+		        <label for="nome" class="col-sm-2 col-form-label text-md-right text-sm-left">Descreva:</label>
+		        <input id="nome" placeholder="Ração whiskas para gatos adúltos  em ótimo preço" required type="text" th:field="*{nome}"
+		               class="form-control col-sm-9"/>       
 		    </div>
-		    <div class="form-group">		        
-		        <input type="text" class="form-control" id="currency" 
+		     <div class="form-group row">
+		        <label for="valor" class="col-sm-2 col-form-label text-md-right text-sm-left">Valor:</label>
+		        <input type="text" class="form-control col-sm-9" id="valor" placeholder="R$ 0.00"
                                data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': 'R$ ', 'placeholder': '0'"
-                               autocomplete="off" th:field="*{valor}"/>       
+                               autocomplete="off" th:field="*{valor}"/>            
 		    </div>
-		    <div class="form-group">
-		        <input id="lastName" placeholder="Loja do produto" required type="text" th:field="*{Loja}"
-		               class="form-control"/>
+		    <div class="form-group row">
+		        <label for="loja" class="col-sm-2 col-form-label text-md-right text-sm-left">Loja:</label>
+		        <input id="loja" placeholder="Loja Super Barata" required type="text" th:field="*{loja}"
+		               class="form-control col-sm-9"/>       
 		    </div>
-		    <input type="submit" class="btn btn-info" value="Postar Promoção">		    
+		    <div class="form-group text-center">
+		    	<input type="submit" class="btn btn-info" value="Postar Promoção">
+		    </div>			    
 		</form>
     	</div>
     	<div class="row">
@@ -43,8 +49,8 @@
 		            <div class="card-header" th:text="${promocao.nome}"></div>		            
 		            <div class="card-body">
 		                <p class="card-text" th:text="${promocao.valor}"></p>
-		                <p class="card-text" th:text="${promocao.loja}"></p>
-		                <p class="card-text" th:text="${#dates.format(promocao.atualizacao, 'dd/MM/yyyy hh:mm')}"></p>
+		                <p class="card-text" th:text="|Loja: ${promocao.loja}|"></p>
+		                <p class="card-text" th:text="|Cadastro: ${#dates.format(promocao.atualizacao, 'dd/MM/yyyy hh:mm')}|"></p>
 		                <hr>
 		                <p><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
 		                    class="btn btn-info">Ir para o melhor preço</a></p>
@@ -61,7 +67,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7-beta.23/jquery.inputmask.min.js" integrity="sha512-mh8BrmrpMLvcfym8unG8TXU+LGUP0A2C6tN4b/RXWK3xffaA9k4blevFyY9WFyn3Y4pqpPNIVWtCZUTGRLqrrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		
 		<script>
-		    $(":input").inputmask();
+		    $(":input").inputmask({ rightAlign: false });
 		</script>		
     </body>
 </html>
