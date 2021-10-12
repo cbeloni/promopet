@@ -25,7 +25,7 @@ public class Promocao {
 	
 	private String nome;
 	private String descricao;
-	private BigDecimal valor;
+	private String valor;
 	private String desconto;
 	private String loja;
 	private String cupom;

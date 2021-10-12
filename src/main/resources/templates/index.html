@@ -23,9 +23,10 @@
 		        <input id="lastName" placeholder="link da promoção" required type="text" th:field="*{link}"
 		               class="form-control"/>
 		    </div>
-		    <div class="form-group">
-		        <input id="lastName" placeholder="Valor do produto" required type="text" th:field="*{valor}"
-		               class="form-control"/>
+		    <div class="form-group">		        
+		        <input type="text" class="form-control" id="currency" 
+                               data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': 'R$ ', 'placeholder': '0'"
+                               autocomplete="off" th:field="*{valor}"/>       
 		    </div>
 		    <div class="form-group">
 		        <input id="lastName" placeholder="Loja do produto" required type="text" th:field="*{Loja}"
@@ -44,11 +45,11 @@
 		                <tr th:each="promocao : ${promocoes}">
 		                    <td th:text="${promocao.nome}"></td>
 		                    <td 
-		                    	<span th:text="${#numbers.formatCurrency(promocao.valor)}"/>
+		                    	<span th:text="${promocao.valor}"/>
 		                    
 		                    </td>
 		                    <td th:text="${promocao.loja}"></td>
-		                    <td th:text="${promocao.atualizacao}"></td>
+		                    <td th:text="${#dates.format(promocao.atualizacao, 'dd/MM/yyyy hh:mm')}"></td>		                    		                    
 		                    <td><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
 		                    class="btn btn-info">Ir para o melhor preço</a></td>		                    
 		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}" class="btn btn-danger">Delete</a></td>
@@ -57,5 +58,14 @@
 		        </table>
 		    </div>      
 		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7-beta.23/jquery.inputmask.min.js" integrity="sha512-mh8BrmrpMLvcfym8unG8TXU+LGUP0A2C6tN4b/RXWK3xffaA9k4blevFyY9WFyn3Y4pqpPNIVWtCZUTGRLqrrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+		<script>
+		    $(":input").inputmask();
+		</script>		
     </body>
 </html>
