@@ -7,9 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    	<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"/>
     </head>
     <body>
-    	<div th:switch="${promocoes}"  class="container">
+    	<div class="container">
     	<br>
     	<h2>O melhor preço para os produtos do seu Pet</h2>
     	<hr>    	
@@ -35,29 +36,24 @@
 		    <input type="submit" class="btn btn-info" value="Postar Promoção">		    
 		</form>
     	</div>
-        
-		    <h2 th:case="null">Não encontramos promoções!</h2>
-		        <div th:case="*">
-		            <h2>Promoções</h2>
-		            
-		            <table class="table table-striped">
-		                <tbody>
-		                <tr th:each="promocao : ${promocoes}">
-		                    <td th:text="${promocao.nome}"></td>
-		                    <td 
-		                    	<span th:text="${promocao.valor}"/>
+    	<div class="row">
+		    <div class="col-xl-3" th:each="promocao : ${promocoes}">
+		        <div class="card border-info mb-3">
+		            <!--  <img class="card-img-top" src="..." alt="Card image cap">-->
+		            <div class="card-header" th:text="${promocao.nome}"></div>		            
+		            <div class="card-body">
+		                <p class="card-text" th:text="${promocao.valor}"></p>
+		                <p class="card-text" th:text="${promocao.loja}"></p>
+		                <p class="card-text" th:text="${#dates.format(promocao.atualizacao, 'dd/MM/yyyy hh:mm')}"></p>
+		                <hr>
+		                <p><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
+		                    class="btn btn-info">Ir para o melhor preço</a></p>
 		                    
-		                    </td>
-		                    <td th:text="${promocao.loja}"></td>
-		                    <td th:text="${#dates.format(promocao.atualizacao, 'dd/MM/yyyy hh:mm')}"></td>		                    		                    
-		                    <td><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
-		                    class="btn btn-info">Ir para o melhor preço</a></td>		                    
-		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}" class="btn btn-danger">Delete</a></td>
-		                </tr>
-		            </tbody>
-		        </table>
-		    </div>      
-		</div>
+		                <a th:href="@{/apagar/{id}(id=${promocao.id})}" class="btn btn-danger">Delete</a>    
+		            </div>
+		      </div>
+		  </div>					    						
+		</div>	
 		
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
