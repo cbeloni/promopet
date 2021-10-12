@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.promopet.entity.Promocao;
@@ -29,7 +30,7 @@ public class PromocaoService {
 	}
 	
 	public List<Promocao> listarTodos(){
-		return promocaoRepository.findAll();
+		return promocaoRepository.findAll(Sort.by(Sort.Direction.DESC,"atualizacao"));
 	}
 	
 	public Promocao listarPorId(Long id) {

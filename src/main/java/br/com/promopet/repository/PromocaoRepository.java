@@ -8,5 +8,4 @@ import br.com.promopet.entity.Promocao;
 
 @Repository
 public interface PromocaoRepository extends JpaRepository<Promocao, Long>, PagingAndSortingRepository<Promocao, Long>{
-
 }

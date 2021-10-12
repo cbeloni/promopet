@@ -10,7 +10,9 @@
     </head>
     <body>
     	<div th:switch="${promocoes}"  class="container">
-    	
+    	<br>
+    	<h2>O melhor preço para os produtos do seu Pet</h2>
+    	<hr>    	
     	<div>
     	<form method="post" th:action="@{/salvar}" th:object="${promocao}" class="col card p-3 mb-5">
 		    <div class="form-group">
@@ -29,7 +31,7 @@
 		        <input id="lastName" placeholder="Loja do produto" required type="text" th:field="*{Loja}"
 		               class="form-control"/>
 		    </div>
-		    <input type="submit" class="btn btn-primary" value="Postar Promoção">		    
+		    <input type="submit" class="btn btn-info" value="Postar Promoção">		    
 		</form>
     	</div>
         
@@ -41,11 +43,14 @@
 		                <tbody>
 		                <tr th:each="promocao : ${promocoes}">
 		                    <td th:text="${promocao.nome}"></td>
-		                    <td th:text="${promocao.valor}"></td>
+		                    <td 
+		                    	<span th:text="${#numbers.formatCurrency(promocao.valor)}"/>
+		                    
+		                    </td>
 		                    <td th:text="${promocao.loja}"></td>
 		                    <td th:text="${promocao.atualizacao}"></td>
 		                    <td><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
-		                    class="btn btn-info">Ir para Promoção</a></td>		                    
+		                    class="btn btn-info">Ir para o melhor preço</a></td>		                    
 		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}" class="btn btn-danger">Delete</a></td>
 		                </tr>
 		            </tbody>
