@@ -9,26 +9,44 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     </head>
     <body>
-        <div th:switch="${promocoes}"  class="container">
+    	<div th:switch="${promocoes}"  class="container">
+    	
+    	<div>
+    	<form method="post" th:action="@{/salvar}" th:object="${promocao}" class="col card p-3 mb-5">
+		    <div class="form-group">
+		        <input id="firstName" placeholder="Descreva a promoção" required type="text" th:field="*{nome}"
+		               class="form-control"/>
+		    </div>
+		    <div class="form-group">
+		        <input id="lastName" placeholder="link da promoção" required type="text" th:field="*{link}"
+		               class="form-control"/>
+		    </div>
+		    <div class="form-group">
+		        <input id="lastName" placeholder="Valor do produto" required type="text" th:field="*{valor}"
+		               class="form-control"/>
+		    </div>
+		    <div class="form-group">
+		        <input id="lastName" placeholder="Loja do produto" required type="text" th:field="*{Loja}"
+		               class="form-control"/>
+		    </div>
+		    <input type="submit" class="btn btn-primary" value="Postar Promoção">		    
+		</form>
+    	</div>
+        
 		    <h2 th:case="null">Não encontramos promoções!</h2>
 		        <div th:case="*">
 		            <h2>Promoções</h2>
 		            
 		            <table class="table table-striped">
-		                <thead>
-		                    <tr>
-		                        <th>Nome</th>
-		                        <th>Descrição</th>
-		                        <th>link</th>
-		                        <th>Delete</th>
-		                    </tr>
-		                </thead>
 		                <tbody>
 		                <tr th:each="promocao : ${promocoes}">
 		                    <td th:text="${promocao.nome}"></td>
-		                    <td th:text="${promocao.descricao}"></td>
-		                    <td><a th:href="${promocao.link}">Ir para Promoção</a></td>		                    
-		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}">Delete</a></td>
+		                    <td th:text="${promocao.valor}"></td>
+		                    <td th:text="${promocao.loja}"></td>
+		                    <td th:text="${promocao.atualizacao}"></td>
+		                    <td><a target="_blank" rel="noopener noreferrer" th:href="${promocao.link}"
+		                    class="btn btn-info">Ir para Promoção</a></td>		                    
+		                    <td><a th:href="@{/apagar/{id}(id=${promocao.id})}" class="btn btn-danger">Delete</a></td>
 		                </tr>
 		            </tbody>
 		        </table>

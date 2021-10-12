@@ -35,11 +35,12 @@ public class Promocao {
 	
 	@Column(name = "link", length=4000)
 	private String link;
-	private Date atualiacao;
+	private Date atualizacao = new Date();
 	
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
 	private List<Categoria> categorias;
+
 	
 
 }
